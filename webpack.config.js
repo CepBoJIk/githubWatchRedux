@@ -9,13 +9,13 @@ const PATHS = {
 
 module.exports = function(env) {
   if (env === 'development') {
-    return merge([common, sass]);
+    return common;
   }
   if (env === 'production') {
-    return merge([common, eslint, sassAndAutoprefixer, babel, uglify]);
+    return merge([common, eslint, babel, uglify]);
   }
   if (env === 'production:github') {
-    return merge([common, eslint, sassAndAutoprefixer, babel, uglify, githubPagesPrefix]);
+    return merge([common, eslint, babel, uglify, githubPagesPrefix]);
   }
 }
 
@@ -30,6 +30,14 @@ const common = {
   module: {
     rules: [
       {
+        test: /\.s?css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader',
+        ]
+      },
+      {
         test: /\.(html)$/,
         use: {
           loader: 'html-loader',
@@ -37,7 +45,10 @@ const common = {
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
-        loader: 'file-loader?name=img/[name].[ext]'
+        loader: 'file-loader',
+        options: {
+          name: 'img/[name].[ext]',
+        }
       }
     ]
   },
@@ -75,32 +86,6 @@ const uglify = {
 const githubPagesPrefix = {
   output: {
     publicPath: '/githubWatchRxjs/'
-  }
-}
-
-const sass = {
-  module: {
-    rules: [
-      {
-        test: /\.s?css$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader'
-        ]
-      }
-    ]
-  }
-}
-
-const sassAndAutoprefixer = {
-  module: {
-    rules: [
-      {
-        test: /\.s?css$/,
-        use: ["style-loader", "css-loader", "postcss-loader", 'sass-loader']
-      }
-    ]
   }
 }
 

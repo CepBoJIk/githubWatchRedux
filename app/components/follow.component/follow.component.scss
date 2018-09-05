@@ -46,7 +46,7 @@ body {
       left: 50%;
       margin-top: -9px;
       margin-left: -60px;
-      background-image: url(/img/sync-alt-solid.svg);
+      background-image: url('../../../img/sync-alt-solid.svg');
     }
   }
 }
@@ -104,7 +104,7 @@ body {
       height: 17px;
       left: 0;
       top: -2px;
-      background-image: url(/img/map-marker-alt-solid.svg);
+      background-image: url('../../../img/map-marker-alt-solid.svg');
       background-repeat: no-repeat;
       background-position: center center;
     }
@@ -168,7 +168,7 @@ body {
     flex: 0 0 109px;
     width: 109px;
     border: none;
-    background: #E37171 url(/img/trash-alt-regular.svg) no-repeat center center;
+    background: #E37171 url('../../../img/trash-alt-regular.svg') no-repeat center center;
     background-size: 45px;
     cursor: pointer;
   }
